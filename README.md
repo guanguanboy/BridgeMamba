@@ -1,14 +1,15 @@
 
-## Spatial-Frequency Integrated Mamba for Low-light Image Enhancement
+## BridgeMamba: Bridging the Spatial-Frequency Gap for Low-Light Image Enhancement
 
 
-> **Abstract:**   Low-light image enhancement (LLIE) is essential for real-world high-level vision applications such as autonomous driving, surveillance, and photography. While Convolutional Neural Networks (CNNs) and Transformers have advanced the field, they are inherently constrained by a trade-off between local receptive field limitations and the quadratic computational complexity of global modeling. These constraints often manifest as a failure to simultaneously preserve fine-grained structural continuity and global illumination consistency. Recently, state space models (SSM), particularly the Mamba architecture, have emerged as a potent alternative for long-sequence modeling. While the Mamba architecture demonstrates notable strengths, its design does not fully incorporate the mechanisms for spatial and frequency awareness capabilities. Moreover, their capacity to simultaneously capture both locally invariant visual patterns and global illumination relationships remains fundamentally constrained by current architectural formulations. To overcome these limitations, we introduce a novel method named Spatial-Frequency Integrated Mamba for Low-light image enhancement (SFIM-LLIE). More specifically, we design a two branch Structure-frequency Integrated Block (SFIB) to enhance Mamba's capability  for comprehensive feature representation learning in both spatial and frequency domains. The structure-aware Mamba Block (SaMB) branch with structure-aware SSM is introduced to better retain localized spatial dependencies. The Spectral Feature Enhancement Block (SFEB) branch is design to augment Mamba’s frequency processing capabilities. Additionally, to mitigate the discrepancy between disparate feature domains, we propose an illumination guided mixture of experts feed-forward (IMOE-FFN) module. This module employs spatially-varying gating mechanism to adaptively fuse features drives from the spatial and frequency branches via a learnable kernel selection strategy. Comprehensive experimental evaluations on benchmark datasets reveals that SFIM-LLIE achieves superior performance in both subjective visual quality and objective metrics, while maintaining high computational efficiency.
+> **Abstract:**   Low-light image enhancement (LLIE) is critical for rectifying non-uniform illumination and restoring structural details in degraded visual environments. Traditional CNN- and Transformer-based methods suffer from a trade-off between limited receptive fields and high computational costs. Recently, Mamba has emerged as a promising solution for modeling long-range dependencies with linear complexity. Unfortunately, Mamba lacks the capability to fully exploit frequency characteristics that used capture hidden features across the spectral domain, which are essential for LLIE. Moreover, existing LLIE methods that incorporate frequency properties often fail to adequately align them with spatial content, resulting in a representation gap that degrades enhancement performance.
+To address these limitations, we propose BridgeMamba, a novel dual-domain Mamba-based framework dedicated to eliminating the spatial-frequency representation gap in LLIE. The cornerstone of our architecture is a Spatial-Frequency Integrated Block (SFIB) engineered to enrich Mamba's feature representation capability in dual-domain. Specifically, the SFIB integrates two complementary components: a Structure-aware Mamba Block (SaMB) and a Spectral Feature Enhancement Block (SFEB). The SaMB incorporates a specialized Structure-aware Selective Scan Module (SaSSM) to fully capture localized spatial dependencies. Concurrently, the SFEB operates within the frequency domain to augment the framework's overall spectral processing capabilities. Finally, we introduce a Dynamic Fusion Gate (DFG) module to adaptively fuse dual-domain features. Comprehensive quantitative and qualitative evaluations on benchmark datasets demonstrate that our method consistently surpasses state-of-the-art LLIE solutions while preserving high computational efficiency. The source code is available at https://github.com/guanguanboy/BridgeMamba.
 
 
 
 
 <p align="center">
-    <img src="assets/pipeline.png" style="border-radius: 15px">
+    <img src="assets/BridgeMamba.png" style="border-radius: 15px">
 </p>
 
 ⭐If this work is helpful for you, please help star this repo. Thanks!🤗
@@ -35,18 +36,9 @@
 We achieve state-of-the-art performance on various image restoration tasks. Detailed results can be found in the paper.
 
 
-<details>
-<summary>Evaluation on LOLv1 (click to expand)</summary>
-
-<p align="center">
-  <img width="500" src="assets/classicSR.png">
-</p>
-</details>
-
-
 
 <details>
-<summary>Evaluation on LOLv2-real (click to expand)</summary>
+<summary>Evaluation on LOLv2-syn and LOLv2-real (click to expand)</summary>
 
 <p align="center">
   <img width="500" src="assets/lightSR.png">
@@ -54,18 +46,9 @@ We achieve state-of-the-art performance on various image restoration tasks. Deta
 </details>
 
 
-<details>
-<summary>Evaluation on LOLv2-syn (click to expand)</summary>
-
-<p align="center">
-  <img width="500" src="assets/gaussian_dn.png">
-</p>
-</details>
-
-
 
 <details>
-<summary>Evaluation on SDSD-indoor (click to expand)</summary>
+<summary>Evaluation on SID and SDSD-indoor (click to expand)</summary>
 
 <p align="center">
   <img width="500" src="assets/car.png">
@@ -74,14 +57,6 @@ We achieve state-of-the-art performance on various image restoration tasks. Deta
 </details>
 
 
-<details>
-<summary>Evaluation on Effective Receptive Filed (click to expand)</summary>
-
-<p align="center">
-  <img width="600" src="assets/erf.png">
-</p>
-
-</details>
 
 
 ## <a name="installation"></a> :wrench: Installation
